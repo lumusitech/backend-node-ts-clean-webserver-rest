@@ -1,4 +1,4 @@
-# Webserver and REST API - clean architecture - Node, TS, Jest
+# Webserver and REST API- HTTP HTTP2 HTTPS - clean architecture - Node, TS, Jest
 
 ## Node with TypeScript - TS-Node-dev (better than nodemon when use typescript)
 
@@ -72,6 +72,31 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    "test:watch": "jest --watch",
    "test:coverage": "jest --coverage",
    ```
+
+## NOTES about HTTP, HTTP/2 (HTTPS)
+
+HTTP VS HTTP2 = HTTP/2 will make our applications faster, simpler and more robust. [Read more...](https://web.dev/articles/performance-http2?hl=es-419)
+
+In native Node, without any framework like Express or Fastify, to generate certificates (https), run:
+
+```sh
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt
+```
+
+This will create 2 files (server.crt and server.key).
+You can move them, for example to a folder named keys and then, add them as options in method http2.createSecureServer like this:
+
+```js
+const server = http2.createSecureServer(
+  {
+    key: fs.readFileSync('./keys/server.key'),
+    cert: fs.readFileSync('./keys/server.crt'),
+  },
+  (req, res) => {
+    //...code
+  },
+)
+```
 
 ## Dependencies
 
