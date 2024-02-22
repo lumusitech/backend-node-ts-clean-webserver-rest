@@ -114,6 +114,8 @@ const server = http2.createSecureServer(
 
 - [rimraf](https://www.npmjs.com/package/rimraf): The UNIX command rm -rf for node.
 
+- [Express types](https://www.npmjs.com/package/@types/express):This package contains type definitions for express.
+
 ### Production
 
 - [Express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for Node.js.
