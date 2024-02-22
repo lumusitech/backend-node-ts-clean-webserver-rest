@@ -23,6 +23,7 @@
   "author": "lumusitech",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.19",
     "git-commit-msg-linter": "^5.0.6",
