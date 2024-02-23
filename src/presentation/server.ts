@@ -20,11 +20,22 @@ export class Server {
   public start() {
     // Middlewares
 
-    this.app.use(express.json())
-
     // public folder
     this.app.use(express.static(this.publicPath!))
 
+    // API Routes
+    this.app.get('/api/todos', (req, res) => {
+      return res.json({
+        ok: true,
+        todos: [
+          { id: 1, text: 'some task todo 1', createdAt: new Date() },
+          { id: 2, text: 'some task todo 2', createdAt: null },
+          { id: 3, text: 'some task todo 3', createdAt: new Date() },
+        ],
+      })
+    })
+
+    // need for SPA routes
     this.app.get('*', (req, res) => {
       const indexPath = path.join(__dirname, `../../${this.publicPath}/index.html`)
 
