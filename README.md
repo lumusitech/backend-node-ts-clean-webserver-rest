@@ -119,3 +119,7 @@ const server = http2.createSecureServer(
 ### Production
 
 - [Express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for Node.js.
+
+- [Dotenv](https://www.npmjs.com/package/dotenv): Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
+
+- [Env-Var](https://www.npmjs.com/package/env-var): Verification, sanitization, and type coercion for environment variables in Node.js and web applications. Supports TypeScript!
