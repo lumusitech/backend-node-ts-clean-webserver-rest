@@ -23,4 +23,21 @@ export class TodosController {
 
     return todo ? res.json(todo) : res.status(404).json({ error: `Todo with id ${id} not found` })
   }
+
+  public createTodo = (req: Request, res: Response) => {
+    const { text } = req.body
+
+    if (!text) {
+      return res.status(400).json({ error: 'Text argument is required' })
+    }
+
+    const todo = {
+      id: todos.length + 1,
+      text,
+      createdAt: new Date(),
+    }
+
+    todos.push(todo)
+    return res.status(201).json(todo)
+  }
 }

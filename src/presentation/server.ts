@@ -22,6 +22,8 @@ export class Server {
 
   public start() {
     // Middlewares
+    this.app.use(express.json())
+    this.app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
     // public folder
     this.app.use(express.static(this.publicPath!))
