@@ -22,6 +22,7 @@ NOTE: After clone:
    ```sh
    pnpm i
    docker compose up -d
+   pnpm exec prisma migrate dev
    pnpm dev
    ```
 
@@ -123,6 +124,11 @@ const server = http2.createSecureServer(
 - [rimraf](https://www.npmjs.com/package/rimraf): The UNIX command rm -rf for node.
 
 - [Express types](https://www.npmjs.com/package/@types/express):This package contains type definitions for express.
+
+- [Prisma](https://www.npmjs.com/package/prisma): Prisma is a next-generation ORM that consists of these tools:
+  - Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
+  - Prisma Migrate: Declarative data modeling & migration system
+  - Prisma Studio: GUI to view and edit data in your database
 
 ### Production
 
