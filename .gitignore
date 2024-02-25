@@ -9,3 +9,6 @@ keys
 
 #BBDD
 postgres
+
+# coverage
+coverage
