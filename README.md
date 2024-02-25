@@ -7,13 +7,21 @@ NOTE: After clone:
 1. Create and config .env file with:
 
    ```text
-   # ANY=any_variable
+   PORT=3000
+   PUBLIC_PATH=public
+   POSTGRES_URL=postgresql://postgres:123456@localhost:5432/TODO
+   POSTGRES_USER=postgres
+   POSTGRES_DB=TODO
+   POSTGRES_PORT=5432
+   POSTGRES_PASSWORD=123456
+   NODE_ENV=development
    ```
 
 2. Next, run:
 
    ```sh
    pnpm i
+   docker compose up -d
    pnpm dev
    ```
 
