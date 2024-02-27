@@ -44,8 +44,9 @@ NOTE: After clone:
 
    ```JSON
    "dev": "tsnd --respawn --clear src/app.ts",
-   "build": "rimraf ./dist && tsc",
-   "start": "npm run build && node dist/app.js"
+   "build": "rimraf ./dist && tsc && pnpm prisma:migrate:prod",
+   "start": "node dist/app.js",
+   "prisma:migrate:prod": "prisma migrate deploy",
    ```
 
 ### Jest with TypeScript config
