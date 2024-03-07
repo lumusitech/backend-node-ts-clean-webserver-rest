@@ -118,7 +118,7 @@ const server = http2.createSecureServer(
 
 - [Typescript](https://www.npmjs.com/package/typescript): TypeScript is a language for application-scale JavaScript. TypeScript adds optional types to JavaScript that support tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript.
 
-- [@types/node](https://www.npmjs.com/package/@types/node): This package contains type definitions for node [https://nodejs.org/](https://nodejs.org/).
+- [Node types](https://www.npmjs.com/package/@types/node): This package contains type definitions for node [https://nodejs.org/](https://nodejs.org/).
 
 - [ts-node-dev](https://www.npmjs.com/package/ts-node-dev): It restarts target node process when any of required files changes (as standard node-dev) but shares Typescript compilation process between restarts. This significantly increases speed of restarting comparing to node-dev -r ts-node/register ..., nodemon -x ts-node ... variations because there is no need to instantiate ts-node compilation each time.
 
@@ -127,9 +127,12 @@ const server = http2.createSecureServer(
 - [Express types](https://www.npmjs.com/package/@types/express):This package contains type definitions for express.
 
 - [Prisma](https://www.npmjs.com/package/prisma): Prisma is a next-generation ORM that consists of these tools:
+
   - Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
   - Prisma Migrate: Declarative data modeling & migration system
   - Prisma Studio: GUI to view and edit data in your database
+
+- [Compression types](https://www.npmjs.com/package/@types/compression): This package contains type definitions for compression.
 
 ### Production
 
