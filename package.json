@@ -1,6 +1,6 @@
 {
   "name": "backend-node-ts-clean-webserver-rest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Webserver and REST API with clean architecture and typescript",
   "main": "app.js",
   "scripts": {
