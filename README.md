@@ -72,10 +72,33 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    testEnvironment: "jest-environment-node",
 
    // Opcional - The paths to modules that run some code to configure or set up the testing environment before each test
-   // setupFiles: ['dotenv/config'],
+   setupFiles: ['<rootDir>/setupTests.ts'],
    ```
 
-4. Add the following scripts to the **package.json** file
+4. Create a file in root dir named setupTest.ts and edit with:
+
+   ```js
+   import { config } from 'dotenv'
+
+   config({
+     path: '.env.test',
+   })
+   ```
+
+5. Create and config .env.test with the needed values like:
+
+   ```text
+   PORT=3001
+   PUBLIC_PATH=public
+   POSTGRES_URL=postgresql://postgres:123456@localhost:5432/TODO
+   POSTGRES_USER=postgres
+   POSTGRES_DB=TODO
+   POSTGRES_PORT=5432
+   POSTGRES_PASSWORD=123456
+   NODE_ENV=development
+   ```
+
+6. Add the following scripts to the **package.json** file
 
    ```sh
    "test": "jest",
@@ -83,7 +106,7 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    "test:coverage": "jest --coverage",
    ```
 
-5. If you get permission error, you can run:
+7. If you get permission error, you can run:
 
    ```sh
    cd
