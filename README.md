@@ -83,6 +83,27 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    "test:coverage": "jest --coverage",
    ```
 
+5. If you get permission error, you can run:
+
+   ```sh
+   cd
+   sudo chown -R $USER:$GROUP ~/.npm
+   sudo chown -R $USER:$GROUP ~/.config
+   ```
+
+   OR:
+
+   ```sh
+   cd
+   sudo chown -R $USER:$GROUP package.json pnpm-lock.yaml .config/
+   ```
+
+   and also give permission to folder by:
+
+   ```sh
+   sudo chmod -R 777 foldername
+   ```
+
 ## NOTES about HTTP, HTTP/2 (HTTPS)
 
 HTTP VS HTTP2 = HTTP/2 will make our applications faster, simpler and more robust. [Read more...](https://web.dev/articles/performance-http2?hl=es-419)
