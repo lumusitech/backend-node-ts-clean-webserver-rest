@@ -95,15 +95,16 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    POSTGRES_DB=TODO
    POSTGRES_PORT=5432
    POSTGRES_PASSWORD=123456
-   NODE_ENV=development
+   NODE_ENV=testing
    ```
 
 6. Add the following scripts to the **package.json** file
 
    ```sh
-   "test": "jest",
-   "test:watch": "jest --watch",
-   "test:coverage": "jest --coverage",
+   "prisma:migrate:test": "dotenv -e .env.test -- pnpm exec prisma migrate deploy",
+   "test": "pnpm prisma:migrate:test && jest",
+   "test:watch": "pnpm prisma:migrate:test && jest --watch",
+   "test:coverage": "pnpm prisma:migrate:test && jest --coverage"
    ```
 
 7. If you get permission error, you can run:
@@ -177,6 +178,10 @@ const server = http2.createSecureServer(
   - Prisma Studio: GUI to view and edit data in your database
 
 - [Compression types](https://www.npmjs.com/package/@types/compression): This package contains type definitions for compression.
+
+- [Supertest types](https://www.npmjs.com/package/@types/supertest): This package contains type definitions for supertest.
+
+- [Dotenv-cli](https://www.npmjs.com/package/dotenv-cli): This will load the variables from the .env file in the current working directory and then run the command (using the new set of environment variables).
 
 ### Production
 
