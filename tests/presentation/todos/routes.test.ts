@@ -7,6 +7,10 @@ describe('todos/routes.ts', () => {
     testServer.start()
   })
 
+  beforeEach(async () => {
+    await prisma.todo.deleteMany()
+  })
+
   afterAll(() => {
     testServer.close()
   })
@@ -15,7 +19,6 @@ describe('todos/routes.ts', () => {
   const todo2 = { text: 'task 2' }
 
   it('should return TODOs at endpoint api/todos', async () => {
-    await prisma.todo.deleteMany()
     await prisma.todo.createMany({ data: [todo1, todo2] })
 
     const { body } = await request(testServer.app).get('/api/todos').expect(200)
@@ -27,5 +30,26 @@ describe('todos/routes.ts', () => {
     expect(body[0].text).toBe(todo1.text)
     expect(body[1].text).toBe(todo2.text)
     expect(body[0].completedAt).toBeNull()
+  })
+
+  it('should return a TODO at endpoint api/todos/:id', async () => {
+    const todo = await prisma.todo.create({ data: todo1 })
+
+    const { body } = await request(testServer.app).get(`/api/todos/${todo.id}`).expect(200)
+
+    expect(body).toEqual({
+      id: todo.id,
+      text: todo.text,
+      completedAt: todo.completedAt,
+    })
+  })
+
+  it('should return a 404 Not Found at endpoint api/todos/:id', async () => {
+    // Remember: before each test --> await prisma.todo.deleteMany()
+    const id = 1
+    const { body } = await request(testServer.app).get(`/api/todos/${id}`).expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: `todo with id ${id} not found` })
   })
 })
