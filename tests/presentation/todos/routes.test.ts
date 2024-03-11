@@ -47,7 +47,7 @@ describe('todos/routes.ts', () => {
   it('should return a 404 Not Found at endpoint api/todos/:id', async () => {
     // Remember: before each test --> await prisma.todo.deleteMany()
     const id = 1
-    const { body } = await request(testServer.app).get(`/api/todos/${id}`).expect(400)
+    const { body } = await request(testServer.app).get(`/api/todos/${id}`).expect(404)
 
     // console.log({ body })
     expect(body).toEqual({ error: `todo with id ${id} not found` })
@@ -136,7 +136,7 @@ describe('todos/routes.ts', () => {
   })
 
   it('should not update a TODO with an invalid id at endpoint PUT api/todos/:id', async () => {
-    const { body } = await request(testServer.app).put(`/api/todos/1`).send({}).expect(400)
+    const { body } = await request(testServer.app).put(`/api/todos/1`).send({}).expect(404)
 
     // console.log({ body })
     expect(body).toEqual({ error: 'todo with id 1 not found' })
@@ -168,7 +168,7 @@ describe('todos/routes.ts', () => {
   it('should not delete a TODO with an invalid id at endpoint DELETE api/todos/:id', async () => {
     const id = 1
 
-    const { body } = await request(testServer.app).delete(`/api/todos/${id}`).expect(400)
+    const { body } = await request(testServer.app).delete(`/api/todos/${id}`).expect(404)
 
     // console.log({ body })
     expect(body).toEqual({ error: `todo with id ${id} not found` })
