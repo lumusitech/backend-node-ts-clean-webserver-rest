@@ -107,6 +107,12 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
    "test:coverage": "pnpm prisma:migrate:test && jest --coverage"
    ```
 
+   NOTE: If test:watch not shows coverage, you can change that script with:
+
+   ```sh
+   "test:watch": "pnpm prisma:migrate:test && jest --watchAll --coverage",
+   ```
+
 7. If you get permission error, you can run:
 
    ```sh
