@@ -76,4 +76,83 @@ describe('todos/routes.ts', () => {
     // console.log({ body })
     expect(body).toEqual({ error: 'text is required' })
   })
+
+  it('should update a TODO with the given TODO at endpoint PUT api/todos/:id', async () => {
+    const todo = await prisma.todo.create({ data: todo1 })
+
+    const textToUpdate = 'updated text'
+    const dateToUpdate = '2024-03-11'
+
+    const { body } = await request(testServer.app)
+      .put(`/api/todos/${todo.id}`)
+      .send({ text: textToUpdate, completedAt: dateToUpdate })
+      .expect(200)
+
+    // console.log({ body })
+
+    expect(body).toEqual({
+      id: todo.id,
+      text: textToUpdate,
+      completedAt: new Date(dateToUpdate).toISOString(),
+    })
+  })
+
+  it('should update a TODO with only the given text at endpoint PUT api/todos/:id', async () => {
+    const todo = await prisma.todo.create({ data: todo1 })
+
+    const textToUpdate = 'updated text'
+
+    const { body } = await request(testServer.app)
+      .put(`/api/todos/${todo.id}`)
+      .send({ text: textToUpdate })
+      .expect(200)
+
+    // console.log({ body })
+
+    expect(body).toEqual({
+      id: todo.id,
+      text: textToUpdate,
+      completedAt: todo.completedAt,
+    })
+  })
+
+  it('should update a TODO with only the given date at endpoint PUT api/todos/:id', async () => {
+    const todo = await prisma.todo.create({ data: todo1 })
+
+    const dateToUpdate = '2024-03-11'
+
+    const { body } = await request(testServer.app)
+      .put(`/api/todos/${todo.id}`)
+      .send({ completedAt: dateToUpdate })
+      .expect(200)
+
+    // console.log({ body })
+
+    expect(body).toEqual({
+      id: todo.id,
+      text: todo.text,
+      completedAt: new Date(dateToUpdate).toISOString(),
+    })
+  })
+
+  it('should not update a TODO with an invalid id at endpoint PUT api/todos/:id', async () => {
+    const { body } = await request(testServer.app).put(`/api/todos/1`).send({}).expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: 'todo with id 1 not found' })
+  })
+
+  it('should not update a TODO with an invalid date at endpoint PUT api/todos/:id', async () => {
+    const { id } = await prisma.todo.create({ data: todo1 })
+
+    const invalidDate = 'invalid date'
+
+    const { body } = await request(testServer.app)
+      .put(`/api/todos/${id}`)
+      .send({ completedAt: invalidDate })
+      .expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: 'completedAt must be a valid date' })
+  })
 })
