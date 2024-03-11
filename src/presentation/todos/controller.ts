@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { DeleteTodo, GetTodo, GetTodos, UpdateTodo, type TodoRepository } from '../../domain'
 import { CreateTodoDto, UpdateTodoDto } from '../../domain/dtos'
-import { CreateTodo } from '../../domain/use-cases/todo/create-todo copy'
+import { CreateTodo } from '../../domain/use-cases/todo/create-todo'
 
 export class TodosController {
   // DI

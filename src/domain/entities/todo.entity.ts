@@ -1,7 +1,7 @@
 export class TodoEntity {
   constructor(
     public readonly id: string,
-    public readonly title: string,
+    public readonly text: string,
     public readonly completedAt?: Date | null,
   ) {}
 
@@ -12,9 +12,9 @@ export class TodoEntity {
   public static fromObject(object: { [key: string]: any }): TodoEntity {
     const { id, text, completedAt } = object
 
-    if (!id || isNaN(Number(id))) throw 'ID number is required'
+    if (!id || isNaN(Number(id))) throw new Error('ID number is required')
 
-    if (!text) throw 'Text is required'
+    if (!text) throw new Error('Text is required')
 
     let newCompletedAt
 
@@ -22,7 +22,7 @@ export class TodoEntity {
       newCompletedAt = new Date(completedAt)
 
       if (isNaN(newCompletedAt.getTime())) {
-        throw 'Invalid Date'
+        throw new Error('Invalid Date')
       }
 
       // Or Better:
