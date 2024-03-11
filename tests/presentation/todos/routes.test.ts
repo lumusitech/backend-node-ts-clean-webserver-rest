@@ -155,4 +155,22 @@ describe('todos/routes.ts', () => {
     // console.log({ body })
     expect(body).toEqual({ error: 'completedAt must be a valid date' })
   })
+
+  it('should delete a TODO with the given id at endpoint DELETE api/todos/:id', async () => {
+    const todo = await prisma.todo.create({ data: todo1 })
+
+    const { body } = await request(testServer.app).delete(`/api/todos/${todo.id}`).expect(200)
+
+    // console.log({ body })
+    expect(body).toEqual(todo)
+  })
+
+  it('should not delete a TODO with an invalid id at endpoint DELETE api/todos/:id', async () => {
+    const id = 1
+
+    const { body } = await request(testServer.app).delete(`/api/todos/${id}`).expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: `todo with id ${id} not found` })
+  })
 })
