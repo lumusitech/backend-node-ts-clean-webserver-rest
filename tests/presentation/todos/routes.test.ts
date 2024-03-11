@@ -52,4 +52,28 @@ describe('todos/routes.ts', () => {
     // console.log({ body })
     expect(body).toEqual({ error: `todo with id ${id} not found` })
   })
+
+  it('should create a TODO with the given body at endpoint POST api/todos', async () => {
+    const { body } = await request(testServer.app).post('/api/todos').send(todo1).expect(201)
+
+    expect(body).toEqual({
+      id: expect.any(Number),
+      text: todo1.text,
+      completedAt: null,
+    })
+  })
+
+  it('should not create a TODO at endpoint POST api/todos if text is not present', async () => {
+    const { body } = await request(testServer.app).post('/api/todos').send({}).expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: 'text is required' })
+  })
+
+  it('should not create a TODO at endpoint POST api/todos if text is empty', async () => {
+    const { body } = await request(testServer.app).post('/api/todos').send({ text: '' }).expect(400)
+
+    // console.log({ body })
+    expect(body).toEqual({ error: 'text is required' })
+  })
 })
