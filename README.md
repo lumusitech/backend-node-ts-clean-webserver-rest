@@ -110,22 +110,7 @@ Official documentation [about Jest](https://jestjs.io/docs/getting-started)
 7. If you get permission error, you can run:
 
    ```sh
-   cd
-   sudo chown -R $USER:$GROUP ~/.npm
-   sudo chown -R $USER:$GROUP ~/.config
-   ```
-
-   OR:
-
-   ```sh
-   cd
-   sudo chown -R $USER:$GROUP package.json pnpm-lock.yaml .config/
-   ```
-
-   and also give permission to folder by:
-
-   ```sh
-   sudo chmod -R 777 foldername
+   sudo chown -R $USER:$GROUP postgres # Or whatever folder/s with error
    ```
 
 ## NOTES about HTTP, HTTP/2 (HTTPS)
